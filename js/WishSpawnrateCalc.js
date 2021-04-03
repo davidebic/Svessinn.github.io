@@ -10,23 +10,23 @@ Vue.component("value-input", {
 		isRank: Boolean
 	},
 	template: `
-      <div class="value-input">
-        <div class="form-group">
-          <label :for="id">{{label}}</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i :class="'fas fa-' + faIcon"></i></span>
-            </div>
-            <input type="number" class="form-control" id="claimRank" :placeholder="label" :value="value" @input="updateValue" :min="minTick" pattern="\d+" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="btn-group d-flex">
-          <button v-for="tick of allTicks" type="button" class="btn btn-light" :value="tick.value" @click="changeValue">{{tick.label}}</button>
-        </div>
-        </div>
-      </div>
-    `,
+                  <div class="value-input">
+                    <div class="form-group">
+                      <label :for="id">{{label}}</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i :class="'fas fa-' + faIcon"></i></span>
+                        </div>
+                        <input type="number" class="form-control" id="claimRank" :placeholder="label" :value="value" @input="updateValue" :min="minTick" pattern="\d+" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="btn-group d-flex">
+                      <button v-for="tick of allTicks" type="button" class="btn btn-light" :value="tick.value" @click="changeValue">{{tick.label}}</button>
+                    </div>
+                    </div>
+                  </div>
+                `,
 	computed: {
 		allTicks: function () {
 			this.tickVals.sort();
