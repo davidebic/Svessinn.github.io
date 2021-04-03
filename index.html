@@ -36,114 +36,26 @@
                <div id="calc-form" aria-labelledby="formula-header">
                   <div class="card-body">
                      <form>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="wishlistSize">No. of Charaters Wished in Your Roll Type (Unclaimed)</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="No. of Charaters Wished in Your Roll Type (Unclaimed)" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="0" class="btn btn-light">0</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">+10</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="wishBoost">Badge Wish Boost %</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="Badge Wish Boost %" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="150" class="btn btn-light">Best: 150</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="firstWishBoost">First Wish Boost %</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="First Wish Boost %" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="500" class="btn btn-light">Best: 500</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="wishProtection">Wish Protection Rate (1/X)</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-star"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="Wish Protection Rate (1/X)" min="499" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="10000" class="btn btn-light">Worst: 10000</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="10" class="btn btn-light">+10</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="499" class="btn btn-light">Best: 499</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="disabledChars">No. of Disabled Characters in Your Roll Type</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="No. of Disabled Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65059" class="btn btn-light">Best: 65059</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="leftChars">No. of Characters Left in Your Roll Type</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="No. of Characters Left in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="totalChars">Total No. of Characters in Your Roll Type</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="Total No. of Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div>
-                           </div>
-                        </div>
-                        <div class="value-input">
-                           <div class="form-group">
-                              <label for="PersonalRare">Personal Rare Value</label> 
-                              <div class="input-group">
-                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
-                                 <input type="number" id="claimRank" placeholder="Personal Rare Value" min="1" pattern="d+" required="required" class="form-control">
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <div class="btn-group d-flex"><button type="button" value="1" class="btn btn-light">Worst: 1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">Best: 10</button></div>
-                           </div>
-                        </div>
+                       <value-input id="wishlistSize" label="No. of Charaters Wished in Your Roll Type (Unclaimed)" fa-icon="list" v-model:value.number="wishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
+                       <value-input id="wishBoost" label="Badge Wish Boost %" fa-icon="percent" v-model:value.number="wishBoost" :min-tick="0" :max-tick="150" :tick-vals="[25, 50]"></value-input>
+                       <value-input id="firstWishBoost" label="First Wish Boost %" fa-icon="percent" v-model:value.number="firstWishBoost" :min-tick="0" :max-tick="500" :tick-vals="[25, 50]"></value-input>
+                       <value-input id="wishProtection" label="Wish Protection Rate (1/X)" fa-icon="star" v-model:value.number="wishProtection" :min-tick="499" :max-tick="10000" :tick-vals="[1, 10, 25, 50]" is-rank></value-input>
+                       <value-input id="disabledChars" label="No. of Disabled Characters in Your Roll Type" fa-icon="list" v-model:value.number="disabledChars" :min-tick="0" :max-tick="65059" :tick-vals="[1000, 5000]"></value-input>
+                       <value-input id="leftChars" label="No. of Characters Left in Your Roll Type" fa-icon="users" v-model:value.number="leftChars" :min-tick="0" :max-tick="65069" :tick-vals="[1000, 5000]"></value-input>
+                       <value-input id="totalChars" label="Total No. of Characters in Your Roll Type" fa-icon="users" v-model:value.number="totalChars" :min-tick="0" :max-tick="65069" :tick-vals="[1000, 5000]"></value-input>
+                       <value-input id="PersonalRare" label="Personal Rare Value" fa-icon="users" v-model:value.number="PersonalRare" :min-tick="1" :max-tick="10" :tick-vals="[1]"></value-input>
                      </form>
                      <table class="table table-sm text-center">
-                        <thead>
-                           <tr>
-                              <th scope="col">% Chance of Rolling a Wish</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>0.032709752925877765</td>
-                           </tr>
-                        </tbody>
+                       <thead>
+                         <tr>
+                           <th scope="col">% Chance of Rolling a Wish</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+                         <tr>
+                           <td>{{Val}}</td>
+                         </tr>
+                       </tbody>
                      </table>
                   </div>
                </div>
