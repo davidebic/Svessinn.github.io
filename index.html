@@ -1,256 +1,622 @@
-<div id="result-iframe-wrap" role="main">
-  <iframe id="result" src="https://cdpn.io/svessinn/fullpage/gOgmBqX" sandbox="allow-downloads allow-forms allow-modals allow-pointer-lock allow-popups allow-presentation allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="accelerometer; camera; encrypted-media; geolocation; gyroscope; microphone; midi" allowtransparency="true" allowpaymentrequest="true" allowfullscreen="true" class="result-iframe">
-    <!DOCTYPE html>
-    <html lang="en"><head>
-
-  <meta charset="UTF-8">
-  
-<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
-<meta name="apple-mobile-web-app-title" content="CodePen">
-
-<link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
-
-<link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
-
-
-  <title>CodePen - Wish Spawnrate Calculator</title>
-  
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/lightfair.min.css">
-  
-<style>
-body {
-  min-height: 100vh;
-}
-
-.flex-fill {
-  flex: 1 1 auto;
-}
-
-footer {
-  background-color: #f5f5f5;
-}
-
-.card-header .fa {
-  transition: 0.3s transform ease-in-out;
-}
-
-.card-header .collapsed .fa {
-  transform: rotate(90deg);
-}
-
-#formula-header, #formula-header:hover, #code-header, #code-header:hover {
-  color: black;
-  text-decoration: none !important;
-}
-
-.katex {
-  font-size: 1em;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.btn-group {
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-.variable {
-  font-size:1.2em;
-}
-
-#formula {
-  font-size:1.5em;
-}
-</style>
-
-  <script>
-  window.console = window.console || function(t) {};
-</script>
-
-  
-  
-  <script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
-</script>
-
-
-</head>
-
-<body translate="no" class="d-flex flex-column h-100" data-new-gr-c-s-check-loaded="14.1002.0" data-gr-ext-installed="">
-  
-  <header>
-    <nav class="navbar navbar-expand-md text-light bg-info">
-      <div class="mx-auto">
-        <a class="navbar-brand">Wish Spawnrate Calculator</a>
-      </div>
-    </nav>
-  </header>
-  <main role="main" class="flex-fill mt-4">
-    <div id="app" class="container"><div class="card mb-4"><div id="calc-form" aria-labelledby="formula-header"><div class="card-body"><form><div class="value-input"><div class="form-group"><label for="wishlistSize">No. of Charaters Wished in Your Roll Type (Unclaimed)</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div> <input type="number" id="claimRank" placeholder="No. of Charaters Wished in Your Roll Type (Unclaimed)" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="0" class="btn btn-light">0</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">+10</button></div></div></div> <div class="value-input"><div class="form-group"><label for="wishBoost">Badge Wish Boost %</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div> <input type="number" id="claimRank" placeholder="Badge Wish Boost %" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="150" class="btn btn-light">Best: 150</button></div></div></div> <div class="value-input"><div class="form-group"><label for="firstWishBoost">First Wish Boost %</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div> <input type="number" id="claimRank" placeholder="First Wish Boost %" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="500" class="btn btn-light">Best: 500</button></div></div></div> <div class="value-input"><div class="form-group"><label for="wishProtection">Wish Protection Rate (1/X)</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-star"></i></span></div> <input type="number" id="claimRank" placeholder="Wish Protection Rate (1/X)" min="499" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="10000" class="btn btn-light">Worst: 10000</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="10" class="btn btn-light">+10</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="499" class="btn btn-light">Best: 499</button></div></div></div> <div class="value-input"><div class="form-group"><label for="disabledChars">No. of Disabled Characters in Your Roll Type</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div> <input type="number" id="claimRank" placeholder="No. of Disabled Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65059" class="btn btn-light">Best: 65059</button></div></div></div> <div class="value-input"><div class="form-group"><label for="leftChars">No. of Characters Left in Your Roll Type</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div> <input type="number" id="claimRank" placeholder="No. of Characters Left in Your Roll Type" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div></div></div> <div class="value-input"><div class="form-group"><label for="totalChars">Total No. of Characters in Your Roll Type</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div> <input type="number" id="claimRank" placeholder="Total No. of Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div></div></div> <div class="value-input"><div class="form-group"><label for="PersonalRare">Personal Rare Value</label> <div class="input-group"><div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div> <input type="number" id="claimRank" placeholder="Personal Rare Value" min="1" pattern="d+" required="required" class="form-control"></div></div> <div class="form-group"><div class="btn-group d-flex"><button type="button" value="1" class="btn btn-light">Worst: 1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">Best: 10</button></div></div></div></form> <table class="table table-sm text-center"><thead><tr><th scope="col">% Chance of Rolling a Wish</th></tr></thead> <tbody><tr><td>0.032709752925877765</td></tr></tbody></table></div></div></div> <div class="card mb-4"><h5 class="card-header"><a data-toggle="collapse" href="#formula-text" aria-expanded="true" aria-controls="formula-text" id="formula-header" class="collapsed d-block"><i class="fa fa-chevron-down float-right"></i>
-            The Formula
-          </a></h5> <div id="formula-text" aria-labelledby="formula-header" class="collapse"><div id="nerd-shit" class="card-body">
-            Let <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">wl</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal" style="margin-right: 0.01968em;">l</span></span></span></span></span></span> be the number of wishes in your roll type, <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><msub><mi>b</mi><mi>B</mi></msub></mrow><annotation encoding="application/x-tex">wb_B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.84444em; vertical-align: -0.15em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span> be badge wish boost, and <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><msub><mi>b</mi><mi>F</mi></msub></mrow><annotation encoding="application/x-tex">wb_F</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.84444em; vertical-align: -0.15em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span> be the fist wish boost, <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">wp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal">p</span></span></span></span></span></span> be the wish prorection rate, <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>D</mi></msub></mrow><annotation encoding="application/x-tex">C_D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span> be the number of disabled characters in your roll type, <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>L</mi></msub></mrow><annotation encoding="application/x-tex">C_L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span> be the number of unclaimed characters in your roll type, <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mi>T</mi></msub></mrow><annotation encoding="application/x-tex">C_T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span> be the total number of characters in your roll type, and <span class="variable"><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">pr</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right: 0.02778em;">r</span></span></span></span></span></span> be your personal rare value.<br> <div id="formula">
-            <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mi>P</mi></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mrow></mrow><mo>=</mo><mi>w</mi><mi>p</mi><mo>+</mo><mfrac><mrow><mi>w</mi><mi>l</mi><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mrow><mi>w</mi><msub><mi>b</mi><mi>B</mi></msub></mrow><mn>100</mn></mfrac><mo stretchy="false">)</mo><mo>+</mo><mfrac><mrow><mi>w</mi><msub><mi>b</mi><mi>F</mi></msub></mrow><mn>100</mn></mfrac></mrow><mrow><msub><mi>C</mi><mi>L</mi></msub><mo>−</mo><msub><mi>C</mi><mi>D</mi></msub><mo>+</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mfrac><msub><mi>C</mi><mi>L</mi></msub><msub><mi>C</mi><mi>T</mi></msub></mfrac><msup><mo stretchy="false">)</mo><mrow><mi>p</mi><mi>r</mi></mrow></msup><mo stretchy="false">)</mo><mo>×</mo><msub><mi>C</mi><mi>T</mi></msub></mrow></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">
-              \begin{aligned}
-                P &amp;= wp + \frac{wl × (1 + \frac{wb_B}{100}) + \frac{wb_F}{100}}{C_L - C_D + ((1 - \frac{C_L}{C_T})^{pr} )× C_T}
-              \end{aligned}
-            </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 3.15535em; vertical-align: -1.32768em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.82768em;"><span class="" style="top: -3.82768em;"><span class="pstrut" style="height: 3.63141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.32768em;"><span class=""></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.82768em;"><span class="" style="top: -3.82768em;"><span class="pstrut" style="height: 3.63141em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.63141em;"><span class="" style="top: -2.22136em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">(</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.888636em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: -0.07153em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: -0.07153em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.445305em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.590392em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">r</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.735em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal" style="margin-right: 0.01968em;">l</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.896413em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02691em;">w</span><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: 0em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.345em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.896413em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02691em;">w</span><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: 0em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.345em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.22394em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.32768em;"><span class=""></span></span></span></span></span></span></span></span></span></span></span></span>
-            </div></div></div></div> <div class="card mb-4"><h5 class="card-header"><a data-toggle="collapse" href="#code-text" aria-expanded="true" aria-controls="code-text" id="code-header" class="collapsed d-block"><i class="fa fa-chevron-down float-right"></i>
-            The Code
-          </a></h5> <div id="code-text" aria-labelledby="code-header" class="collapse"><div id="code-shit" class="card-body">
-            This is a simple JavaScript code snippet that just implements the formula shown above.
-            <pre><code class="lang-js hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">WishSpawnRate</span>(<span class="hljs-params">WLS, WB, FWB, CC, DC, CL, TC, PR, WP</span>) </span>{
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+      <meta name="apple-mobile-web-app-title" content="CodePen">
+      <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+      <link rel="mask-icon" type="" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111">
+      <title>CodePen - Wish Spawnrate Calculator</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/lightfair.min.css">
+      <style>
+         body {
+         min-height: 100vh;
+         }
+         .flex-fill {
+         flex: 1 1 auto;
+         }
+         footer {
+         background-color: #f5f5f5;
+         }
+         .card-header .fa {
+         transition: 0.3s transform ease-in-out;
+         }
+         .card-header .collapsed .fa {
+         transform: rotate(90deg);
+         }
+         #formula-header, #formula-header:hover, #code-header, #code-header:hover {
+         color: black;
+         text-decoration: none !important;
+         }
+         .katex {
+         font-size: 1em;
+         overflow-x: auto;
+         overflow-y: hidden;
+         }
+         .btn-group {
+         overflow-x: auto;
+         overflow-y: hidden;
+         white-space: nowrap;
+         }
+         .variable {
+         font-size:1.2em;
+         }
+         #formula {
+         font-size:1.5em;
+         }
+      </style>
+      <script>
+         window.console = window.console || function(t) {};
+      </script>
+      <script>
+         if (document.location.search.match(/type=embed/gi)) {
+           window.parent.postMessage("resize", "*");
+         }
+      </script>
+   </head>
+   <body translate="no" class="d-flex flex-column h-100" data-new-gr-c-s-check-loaded="14.1002.0" data-gr-ext-installed="">
+      <header>
+         <nav class="navbar navbar-expand-md text-light bg-info">
+            <div class="mx-auto">
+               <a class="navbar-brand">Wish Spawnrate Calculator</a>
+            </div>
+         </nav>
+      </header>
+      <main role="main" class="flex-fill mt-4">
+         <div id="app" class="container">
+            <div class="card mb-4">
+               <div id="calc-form" aria-labelledby="formula-header">
+                  <div class="card-body">
+                     <form>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="wishlistSize">No. of Charaters Wished in Your Roll Type (Unclaimed)</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="No. of Charaters Wished in Your Roll Type (Unclaimed)" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="0" class="btn btn-light">0</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">+10</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="wishBoost">Badge Wish Boost %</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="Badge Wish Boost %" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="150" class="btn btn-light">Best: 150</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="firstWishBoost">First Wish Boost %</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-percent"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="First Wish Boost %" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="500" class="btn btn-light">Best: 500</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="wishProtection">Wish Protection Rate (1/X)</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-star"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="Wish Protection Rate (1/X)" min="499" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="10000" class="btn btn-light">Worst: 10000</button><button type="button" value="50" class="btn btn-light">+50</button><button type="button" value="25" class="btn btn-light">+25</button><button type="button" value="10" class="btn btn-light">+10</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="-10" class="btn btn-light">-10</button><button type="button" value="-25" class="btn btn-light">-25</button><button type="button" value="-50" class="btn btn-light">-50</button><button type="button" value="499" class="btn btn-light">Best: 499</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="disabledChars">No. of Disabled Characters in Your Roll Type</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-list"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="No. of Disabled Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65059" class="btn btn-light">Best: 65059</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="leftChars">No. of Characters Left in Your Roll Type</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="No. of Characters Left in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="totalChars">Total No. of Characters in Your Roll Type</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="Total No. of Characters in Your Roll Type" min="0" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="0" class="btn btn-light">Worst: 0</button><button type="button" value="-5000" class="btn btn-light">-5000</button><button type="button" value="-1000" class="btn btn-light">-1000</button><button type="button" value="1000" class="btn btn-light">+1000</button><button type="button" value="5000" class="btn btn-light">+5000</button><button type="button" value="65069" class="btn btn-light">Best: 65069</button></div>
+                           </div>
+                        </div>
+                        <div class="value-input">
+                           <div class="form-group">
+                              <label for="PersonalRare">Personal Rare Value</label> 
+                              <div class="input-group">
+                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-users"></i></span></div>
+                                 <input type="number" id="claimRank" placeholder="Personal Rare Value" min="1" pattern="d+" required="required" class="form-control">
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="btn-group d-flex"><button type="button" value="1" class="btn btn-light">Worst: 1</button><button type="button" value="-1" class="btn btn-light">-1</button><button type="button" value="1" class="btn btn-light">+1</button><button type="button" value="10" class="btn btn-light">Best: 10</button></div>
+                           </div>
+                        </div>
+                     </form>
+                     <table class="table table-sm text-center">
+                        <thead>
+                           <tr>
+                              <th scope="col">% Chance of Rolling a Wish</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>0.032709752925877765</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+            <div class="card mb-4">
+               <h5 class="card-header"><a data-toggle="collapse" href="#formula-text" aria-expanded="true" aria-controls="formula-text" id="formula-header" class="collapsed d-block"><i class="fa fa-chevron-down float-right"></i>
+                  The Formula
+                  </a>
+               </h5>
+               <div id="formula-text" aria-labelledby="formula-header" class="collapse">
+                  <div id="nerd-shit" class="card-body">
+                     Let 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <mi>w</mi>
+                                          <mi>l</mi>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">wl</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal" style="margin-right: 0.01968em;">l</span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the number of wishes in your roll type, 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <mi>w</mi>
+                                          <msub>
+                                             <mi>b</mi>
+                                             <mi>B</mi>
+                                          </msub>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">wb_B</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.84444em; vertical-align: -0.15em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be badge wish boost, and 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <mi>w</mi>
+                                          <msub>
+                                             <mi>b</mi>
+                                             <mi>F</mi>
+                                          </msub>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">wb_F</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.84444em; vertical-align: -0.15em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord"><span class="mord mathnormal">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: 0em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the fist wish boost, 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <mi>w</mi>
+                                          <mi>p</mi>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">wp</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal">p</span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the wish prorection rate, 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <msub>
+                                             <mi>C</mi>
+                                             <mi>D</mi>
+                                          </msub>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">C_D</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the number of disabled characters in your roll type, 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <msub>
+                                             <mi>C</mi>
+                                             <mi>L</mi>
+                                          </msub>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">C_L</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the number of unclaimed characters in your roll type, 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <msub>
+                                             <mi>C</mi>
+                                             <mi>T</mi>
+                                          </msub>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">C_T</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83333em; vertical-align: -0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be the total number of characters in your roll type, and 
+                     <span class="variable">
+                        <span>
+                           <span class="katex">
+                              <span class="katex-mathml">
+                                 <math xmlns="http://www.w3.org/1998/Math/MathML">
+                                    <semantics>
+                                       <mrow>
+                                          <mi>p</mi>
+                                          <mi>r</mi>
+                                       </mrow>
+                                       <annotation encoding="application/x-tex">pr</annotation>
+                                    </semantics>
+                                 </math>
+                              </span>
+                              <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.625em; vertical-align: -0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal" style="margin-right: 0.02778em;">r</span></span></span>
+                           </span>
+                        </span>
+                     </span>
+                     be your personal rare value.<br> 
+                     <div id="formula">
+                        <span>
+                           <span class="katex-display">
+                              <span class="katex">
+                                 <span class="katex-mathml">
+                                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                                       <semantics>
+                                          <mtable rowspacing="0.24999999999999992em" columnalign="right left" columnspacing="0em">
+                                             <mtr>
+                                                <mtd>
+                                                   <mstyle scriptlevel="0" displaystyle="true">
+                                                      <mi>P</mi>
+                                                   </mstyle>
+                                                </mtd>
+                                                <mtd>
+                                                   <mstyle scriptlevel="0" displaystyle="true">
+                                                      <mrow>
+                                                         <mrow></mrow>
+                                                         <mo>=</mo>
+                                                         <mi>w</mi>
+                                                         <mi>p</mi>
+                                                         <mo>+</mo>
+                                                         <mfrac>
+                                                            <mrow>
+                                                               <mi>w</mi>
+                                                               <mi>l</mi>
+                                                               <mo>×</mo>
+                                                               <mo stretchy="false">(</mo>
+                                                               <mn>1</mn>
+                                                               <mo>+</mo>
+                                                               <mfrac>
+                                                                  <mrow>
+                                                                     <mi>w</mi>
+                                                                     <msub>
+                                                                        <mi>b</mi>
+                                                                        <mi>B</mi>
+                                                                     </msub>
+                                                                  </mrow>
+                                                                  <mn>100</mn>
+                                                               </mfrac>
+                                                               <mo stretchy="false">)</mo>
+                                                               <mo>+</mo>
+                                                               <mfrac>
+                                                                  <mrow>
+                                                                     <mi>w</mi>
+                                                                     <msub>
+                                                                        <mi>b</mi>
+                                                                        <mi>F</mi>
+                                                                     </msub>
+                                                                  </mrow>
+                                                                  <mn>100</mn>
+                                                               </mfrac>
+                                                            </mrow>
+                                                            <mrow>
+                                                               <msub>
+                                                                  <mi>C</mi>
+                                                                  <mi>L</mi>
+                                                               </msub>
+                                                               <mo>−</mo>
+                                                               <msub>
+                                                                  <mi>C</mi>
+                                                                  <mi>D</mi>
+                                                               </msub>
+                                                               <mo>+</mo>
+                                                               <mo stretchy="false">(</mo>
+                                                               <mo stretchy="false">(</mo>
+                                                               <mn>1</mn>
+                                                               <mo>−</mo>
+                                                               <mfrac>
+                                                                  <msub>
+                                                                     <mi>C</mi>
+                                                                     <mi>L</mi>
+                                                                  </msub>
+                                                                  <msub>
+                                                                     <mi>C</mi>
+                                                                     <mi>T</mi>
+                                                                  </msub>
+                                                               </mfrac>
+                                                               <msup>
+                                                                  <mo stretchy="false">)</mo>
+                                                                  <mrow>
+                                                                     <mi>p</mi>
+                                                                     <mi>r</mi>
+                                                                  </mrow>
+                                                               </msup>
+                                                               <mo stretchy="false">)</mo>
+                                                               <mo>×</mo>
+                                                               <msub>
+                                                                  <mi>C</mi>
+                                                                  <mi>T</mi>
+                                                               </msub>
+                                                            </mrow>
+                                                         </mfrac>
+                                                      </mrow>
+                                                   </mstyle>
+                                                </mtd>
+                                             </mtr>
+                                          </mtable>
+                                          <annotation encoding="application/x-tex">
+                                             \begin{aligned}
+                                             P &amp;= wp + \frac{wl × (1 + \frac{wb_B}{100}) + \frac{wb_F}{100}}{C_L - C_D + ((1 - \frac{C_L}{C_T})^{pr} )× C_T}
+                                             \end{aligned}
+                                          </annotation>
+                                       </semantics>
+                                    </math>
+                                 </span>
+                                 <span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 3.15535em; vertical-align: -1.32768em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.82768em;"><span class="" style="top: -3.82768em;"><span class="pstrut" style="height: 3.63141em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.32768em;"><span class=""></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.82768em;"><span class="" style="top: -3.82768em;"><span class="pstrut" style="height: 3.63141em;"></span><span class="mord"><span class="mord"></span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.63141em;"><span class="" style="top: -2.22136em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">D</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">(</span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.888636em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: -0.07153em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: -0.07153em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.445305em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height: 0.590392em;"><span class="" style="top: -2.989em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">p</span><span class="mord mathnormal mtight" style="margin-right: 0.02778em;">r</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.328331em;"><span class="" style="top: -2.55em; margin-left: -0.07153em; margin-right: 0.05em;"><span class="pstrut" style="height: 2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.15em;"><span class=""></span></span></span></span></span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.735em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right: 0.02691em;">w</span><span class="mord mathnormal" style="margin-right: 0.01968em;">l</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.896413em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02691em;">w</span><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: 0em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.345em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.896413em;"><span class="" style="top: -2.655em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span><span class="mord mtight">0</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.41031em;"><span class="pstrut" style="height: 3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right: 0.02691em;">w</span><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 0.3448em;"><span class="" style="top: -2.35671em; margin-left: 0em; margin-right: 0.0714286em;"><span class="pstrut" style="height: 2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathnormal mtight" style="margin-right: 0.13889em;">F</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.143293em;"><span class=""></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.345em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.22394em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 1.32768em;"><span class=""></span></span></span></span></span></span></span></span></span>
+                              </span>
+                           </span>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="card mb-4">
+               <h5 class="card-header"><a data-toggle="collapse" href="#code-text" aria-expanded="true" aria-controls="code-text" id="code-header" class="collapsed d-block"><i class="fa fa-chevron-down float-right"></i>
+                  The Code
+                  </a>
+               </h5>
+               <div id="code-text" aria-labelledby="code-header" class="collapse">
+                  <div id="code-shit" class="card-body">
+                     This is a simple JavaScript code snippet that just implements the formula shown above.
+                     <pre><code class="lang-js hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">WishSpawnRate</span>(<span class="hljs-params">WLS, WB, FWB, CC, DC, CL, TC, PR, WP</span>) </span>{
   <span class="hljs-keyword">return</span> ((WLS * (<span class="hljs-number">1</span> + WB/<span class="hljs-number">100</span>)+FWB/<span class="hljs-number">100</span>)/(CC-DC+((<span class="hljs-number">1</span>-(CL)/(TC))**PR)*TC)+(<span class="hljs-number">1</span>/WP));
 }</code></pre>
-            This is a simple Python code snippet that just implements the formula shown above.
-            <pre><code class="lang-py hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">WishSpawnRate</span>(<span class="hljs-params">WLS, WB, FWB, CC, DC, CL, TC, PR, WP</span>):</span>
+                     This is a simple Python code snippet that just implements the formula shown above.
+                     <pre><code class="lang-py hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">WishSpawnRate</span>(<span class="hljs-params">WLS, WB, FWB, CC, DC, CL, TC, PR, WP</span>):</span>
   <span class="hljs-keyword">return</span> (WLS * (<span class="hljs-number">1</span> + WB/<span class="hljs-number">100</span>)+FWB/<span class="hljs-number">100</span>)/(CC-DC+((<span class="hljs-number">1</span>-(CL)/(TC))**PR)*TC)+(<span class="hljs-number">1</span>/WP)
-</code></pre></div></div></div></div>
-  </main>
-  <footer class="footer mt-auto py-3">
-    <div class="container">
-      <small class="text-muted">
-        <b>DISCLAIMER:</b> Values may be slightly inaccurate, but this is the best approximation we could get.<br>
-        <b>DISCLAIMER:</b> Big disable lists and high personal rare (3+) will return invalid resaults<br>
-        Value calculations by davidebic, CodePen made by Svess.
-      </small>
-    </div>
-  </footer>
-
-    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
-      <script id="rendered-js">
-Vue.component("value-input", {
-  props: {
-    id: String,
-    label: String,
-    faIcon: String,
-    value: Number,
-    minTick: Number,
-    maxTick: Number,
-    tickVals: Array,
-    isRank: Boolean },
-
-  template: `
-      <div class="value-input">
-        <div class="form-group">
-          <label :for="id">{{label}}</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i :class="'fas fa-' + faIcon"></i></span>
+</code></pre>
+                  </div>
+               </div>
             </div>
-            <input type="number" class="form-control" id="claimRank" :placeholder="label" :value="value" @input="updateValue" :min="minTick" pattern="\d+" required>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="btn-group d-flex">
-          <button v-for="tick of allTicks" type="button" class="btn btn-light" :value="tick.value" @click="changeValue">{{tick.label}}</button>
-        </div>
-        </div>
-      </div>
-    `,
-  computed: {
-    allTicks: function () {
-      this.tickVals.sort();
-      ticks = [];
-      tick_labels = [];
-
-      for (let val of this.tickVals.reverse()) {
-        tick = { value: this.isRank ? val : -1 * val };
-        tick.label = tick.value > 0 ? `+${tick.value}` : tick.value;
-        ticks.push(tick);
-      }
-
-      for (let val of this.tickVals.reverse()) {
-        tick = { value: this.isRank ? -1 * val : val };
-        tick.label = tick.value > 0 ? `+${tick.value}` : tick.value;
-        ticks.push(tick);
-      }
-
-      if (this.maxTick) {
-        if (this.isRank) {
-          ticks.unshift({
-            value: this.maxTick,
-            label: `Worst: ${this.maxTick}` });
-
-          ticks.push({ value: this.minTick, label: `Best: ${this.minTick}` });
-        } else {
-          ticks.unshift({
-            value: this.minTick,
-            label: `Worst: ${this.minTick}` });
-
-          ticks.push({ value: this.maxTick, label: `Best: ${this.maxTick}` });
-        }
-      } else {
-        ticks.splice(ticks.length / 2, 0, {
-          value: this.minTick,
-          label: this.minTick });
-
-      }
-      return ticks;
-    } },
-
-  methods: {
-    updateValue: function (event) {
-      this.$emit("input", event.target.value);
-    },
-    changeValue: function (event) {
-      value_change = Number(event.target.value);
-      label = event.target.innerText;
-      if (label.startsWith("+") || label.startsWith("-")) {
-        this.value = Math.max(this.value + value_change, this.minTick);
-      } else {
-        this.value = value_change;
-      }
-      this.$emit("input", this.value);
-    } } });
-
-
-
-let app = new Vue({
-  el: "#app",
-  data: {
-    wishlistSize: 7,
-    wishBoost: 0,
-    firstWishBoost: 0,
-    wishProtection: 5000,
-    disabledChars: 0,
-    leftChars: 21532,
-    totalChars: 21532,
-    PersonalRare: 2 },
-
-  computed: {
-    Val: function () {
-      return 100 * (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + (1 - this.leftChars / this.totalChars) ** this.PersonalRare * this.totalChars) + 1 / this.wishProtection;
-    } },
-
-  mounted: function () {
-    renderMathInElement(this.$refs.nerdShit);
-    hljs.initHighlightingOnLoad();
-  } });
-//# sourceURL=pen.js
-    </script>
-
-  
-
-
-
-
- 
-</body></html>
-  </iframe>
-</div>
+         </div>
+      </main>
+      <footer class="footer mt-auto py-3">
+         <div class="container">
+            <small class="text-muted">
+            <b>DISCLAIMER:</b> Values may be slightly inaccurate, but this is the best approximation we could get.<br>
+            <b>DISCLAIMER:</b> Big disable lists and high personal rare (3+) will return invalid resaults<br>
+            Value calculations by davidebic, CodePen made by Svess.
+            </small>
+         </div>
+      </footer>
+      <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.5.4/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
+      <script id="rendered-js">
+         Vue.component("value-input", {
+           props: {
+             id: String,
+             label: String,
+             faIcon: String,
+             value: Number,
+             minTick: Number,
+             maxTick: Number,
+             tickVals: Array,
+             isRank: Boolean },
+         
+           template: `
+               <div class="value-input">
+                 <div class="form-group">
+                   <label :for="id">{{label}}</label>
+                   <div class="input-group">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text"><i :class="'fas fa-' + faIcon"></i></span>
+                     </div>
+                     <input type="number" class="form-control" id="claimRank" :placeholder="label" :value="value" @input="updateValue" :min="minTick" pattern="\d+" required>
+                   </div>
+                 </div>
+                 <div class="form-group">
+                   <div class="btn-group d-flex">
+                   <button v-for="tick of allTicks" type="button" class="btn btn-light" :value="tick.value" @click="changeValue">{{tick.label}}</button>
+                 </div>
+                 </div>
+               </div>
+             `,
+           computed: {
+             allTicks: function () {
+               this.tickVals.sort();
+               ticks = [];
+               tick_labels = [];
+         
+               for (let val of this.tickVals.reverse()) {
+                 tick = { value: this.isRank ? val : -1 * val };
+                 tick.label = tick.value > 0 ? `+${tick.value}` : tick.value;
+                 ticks.push(tick);
+               }
+         
+               for (let val of this.tickVals.reverse()) {
+                 tick = { value: this.isRank ? -1 * val : val };
+                 tick.label = tick.value > 0 ? `+${tick.value}` : tick.value;
+                 ticks.push(tick);
+               }
+         
+               if (this.maxTick) {
+                 if (this.isRank) {
+                   ticks.unshift({
+                     value: this.maxTick,
+                     label: `Worst: ${this.maxTick}` });
+         
+                   ticks.push({ value: this.minTick, label: `Best: ${this.minTick}` });
+                 } else {
+                   ticks.unshift({
+                     value: this.minTick,
+                     label: `Worst: ${this.minTick}` });
+         
+                   ticks.push({ value: this.maxTick, label: `Best: ${this.maxTick}` });
+                 }
+               } else {
+                 ticks.splice(ticks.length / 2, 0, {
+                   value: this.minTick,
+                   label: this.minTick });
+         
+               }
+               return ticks;
+             } },
+         
+           methods: {
+             updateValue: function (event) {
+               this.$emit("input", event.target.value);
+             },
+             changeValue: function (event) {
+               value_change = Number(event.target.value);
+               label = event.target.innerText;
+               if (label.startsWith("+") || label.startsWith("-")) {
+                 this.value = Math.max(this.value + value_change, this.minTick);
+               } else {
+                 this.value = value_change;
+               }
+               this.$emit("input", this.value);
+             } } });
+         
+         
+         
+         let app = new Vue({
+           el: "#app",
+           data: {
+             wishlistSize: 7,
+             wishBoost: 0,
+             firstWishBoost: 0,
+             wishProtection: 5000,
+             disabledChars: 0,
+             leftChars: 21532,
+             totalChars: 21532,
+             PersonalRare: 2 },
+         
+           computed: {
+             Val: function () {
+               return 100 * (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + (1 - this.leftChars / this.totalChars) ** this.PersonalRare * this.totalChars) + 1 / this.wishProtection;
+             } },
+         
+           mounted: function () {
+             renderMathInElement(this.$refs.nerdShit);
+             hljs.initHighlightingOnLoad();
+           } });
+         //# sourceURL=pen.js
+             
+      </script>
+   </body>
+</html>
