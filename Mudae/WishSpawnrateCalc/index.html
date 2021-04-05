@@ -55,6 +55,23 @@
                   </div>
                </div>
             </div>
+            
+            
+            <div class="card mb-4">
+               <h5 class="card-header">
+                  <a data-toggle="collapse" href="#instructions" aria-expanded="true" aria-controls="instructions" id="code-header" class="collapsed d-block">
+                  <i class="fa fa-chevron-down float-right"></i>
+                  Instructions
+                  </a>
+               </h5>
+               <div id="instructions" class="collapse" aria-labelledby="code-header">
+                  <div class="card-body" id="instructions" ref="instructions">
+                     Put instructions here
+                  </div>
+               </div>
+            </div>
+            
+            
             <div class="card mb-4">
                <h5 class="card-header">
                   <a data-toggle="collapse" href="#formula-text" aria-expanded="true" aria-controls="formula-text" id="formula-header" class="collapsed d-block">
@@ -106,14 +123,8 @@
             </small>
          </div>
          <script src="js/WishSpawnrateCalc.js"></script>
-         <script>
-            window.console = window.console || function(t) {};
-         </script>
-         <script>
-            if (document.location.search.match(/type=embed/gi)) {
-              window.parent.postMessage("resize", "*");
-            }
-         </script>
+         <script>window.console = window.console || function(t) {};</script>
+         <script>if (document.location.search.match(/type=embed/gi)) {window.parent.postMessage("resize", "*");}</script>
       </footer>
    </body>
 </html>
