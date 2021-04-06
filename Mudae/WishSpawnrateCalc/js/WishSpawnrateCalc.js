@@ -137,7 +137,7 @@ let app = new Vue({
 			let val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
 				console.log(x)
-				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(Math.pow((val, x))*(Math.pow(val, (this.rollAmount-x))))
+				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(val**x)*(val**(this.rollAmount-x))
 				console.error()
 			}
 			return sm
