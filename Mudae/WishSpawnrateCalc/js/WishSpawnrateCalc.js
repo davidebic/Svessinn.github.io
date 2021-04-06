@@ -1,6 +1,4 @@
-const BigNumber = require('bignumber.js');
-
-var f = [new BigNumber(1), new BigNumber(1)];
+var f = [1, 1];
 var i = 2;
 function factorial(n)
 {
