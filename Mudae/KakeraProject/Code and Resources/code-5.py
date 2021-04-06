@@ -2,7 +2,7 @@
 
 #==============================================#
 #         Created By: Svess#8004               #
-#  Last Modification:  2021-03-04 12:14 UTC+0  #
+#  Last Modification:  2021-03-06 10:36 UTC+0  #
 #==============================================#
 
 # Imports
@@ -99,31 +99,20 @@ files = [
 #"resources-3/Dyrus/waifu-gacha.txt"
 ]
 
-sm = 0 # Counter for the number of Light kakera
-
-# IDs of the Mudae Bots that counld be used
-# You can add more if you have a different 
-# Maid/Butler in the server your data is from
-MudaDict = {
-"Mudae":"Mudae#0807",
-"Mudamaid2":"Mudamaid2#2147"
-}
+sm = 0 # Counter 
 
 # Runs through all the desired files
 for File in files:
   searchfile = open(File, "r") # Opening the next File, read only
-  lastLine = '' # Initialising a last line to be able to find the reactions later
 
   # Reads through each line
   for line in searchfile:
     # Checkin if a Message by your specific MudaBOT is a response to a kakeraL reaction
     if ":rollstack:" in line or ":2tierUS:" in line or ":1tierUS:" in line and ":qualityup:" not in line:
-      sm+=1 # Adds to the Light kakera counter
-      # Strips the line into the kakera emotes and then
-      # splits the line into a list of the kakera broken
-      # down from the kakeraL reaction
+      sm+=1 # Adds to the counter
+      # Splits the line
       lst = list(line.split())
-      # Adding the kakera breakdown to the dict
+      # Adding the kl items to the dict
       for i in lst:
         if ":wlslot:" in i:
           dct[":wlslot:"]+=1
@@ -139,9 +128,7 @@ for File in files:
           dct[":disablemore:"]+=1
         if ":addroll:" in i:
           dct[":addroll:"]+=1
-
-    lastLine = line # Updates the lastLine variable
-
+          
   searchfile.close() # Closing the read File so it's ready for the next one
 
 print(dct) # Prints out the raw data
