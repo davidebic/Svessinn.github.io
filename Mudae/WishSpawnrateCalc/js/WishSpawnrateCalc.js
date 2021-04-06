@@ -138,6 +138,7 @@ let app = new Vue({
 			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
 				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(Math.pow((val, x))*(Math.pow(val, (this.rollAmount-x))))
 			}
+			console.log(sm)
 			return sm
 		}
 	},
