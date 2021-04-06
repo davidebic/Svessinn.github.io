@@ -132,8 +132,8 @@ let app = new Vue({
 		},
 		Prob: function () {
 			var sm = 0
-			for (var x = n; x>=wishesDesired; x--) {
-				sm += (f[this.rollAmount])/(f[this.rollAmount-x]*f[x])*(Math.pow(this.Val, x))*(Math.pow(1-Val, (this.ollAmount-x)))
+			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
+				sm += (f[this.rollAmount])/(f[this.rollAmount-x]*f[x])*(Math.pow(this.Val, x))*(Math.pow(1-this.Val, (this.ollAmount-x)))
 			}
 			return sm
 		}
