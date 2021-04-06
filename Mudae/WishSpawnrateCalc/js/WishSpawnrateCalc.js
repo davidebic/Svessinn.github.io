@@ -1,3 +1,20 @@
+const BigNumber = require('bignumber.js');
+
+var f = [new BigNumber(1), new BigNumber(1)];
+var i = 2;
+function factorial(n)
+{
+  if (typeof f[n] != 'undefined')
+    return f[n];
+  var result = f[i-1];
+  for (; i <= n; i++)
+      f[i] = result = result*i;
+  return result;
+}
+var cache = 100;
+// Due to memoization, following line will cache first 100 elements.
+factorial(cache);
+
 Vue.component("value-input", {
 	props: {
 		id: String,
@@ -105,11 +122,20 @@ let app = new Vue({
 		disabledChars: 0,
 		leftChars: 21532,
 		totalChars: 21532,
-		PersonalRare: 2
+		PersonalRare: 2,
+		rollAmount:10,
+		wishesDesired: 1
 	},
 	computed: {
 		Val: function () {
 			return 100 * (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
+		},
+		Prob: function () {
+			var sm = 0
+			for (var x = n; x>=wishesDesired; x--) {
+				sm += (f[rollAmount])/(f[rollAmount-x]*f[x])*(Math.pow(Val, x))*(Math.pow(1-Val, (rollAmount-x)))
+			}
+			return sm
 		}
 	},
 	mounted: function () {
