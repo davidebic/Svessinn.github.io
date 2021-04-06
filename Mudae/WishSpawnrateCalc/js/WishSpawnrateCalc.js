@@ -108,8 +108,6 @@ let app = new Vue({
 		PersonalRare: 2,
 		rollAmount: 10,
 		wishesDesired: 1,
-		sm: 0,
-		val: 0,
 		f: [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000, 51090942171709440000, 1.1240007277776077e+21, 
 		    2.585201673888498e+22, 6.204484017332394e+23, 1.5511210043330986e+25, 4.0329146112660565e+26, 1.0888869450418352e+28, 3.0488834461171384e+29, 8.841761993739701e+30, 2.6525285981219103e+32, 8.222838654177922e+33, 2.631308369336935e+35, 8.683317618811886e+36, 
 		    2.9523279903960412e+38, 1.0333147966386144e+40, 3.719933267899012e+41, 1.3763753091226343e+43, 5.23022617466601e+44, 2.0397882081197442e+46, 8.159152832478977e+47, 3.3452526613163803e+49, 1.4050061177528798e+51, 6.041526306337383e+52, 2.6582715747884485e+54, 
@@ -135,12 +133,12 @@ let app = new Vue({
 		},
 		
 		Prob: function () {
-			this.sm = 0;
-			this.val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
+			let sm = 0;
+			let val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
-				this.sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(Math.pow((this.val, x))*(Math.pow(this.val, (this.rollAmount-x))))
+				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(Math.pow((val, x))*(Math.pow(val, (this.rollAmount-x))))
 			}
-			return this.sm
+			return sm
 		}
 	},
 	mounted: function () {
