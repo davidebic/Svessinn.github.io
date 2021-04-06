@@ -123,20 +123,22 @@ let app = new Vue({
 		leftChars: 21532,
 		totalChars: 21532,
 		PersonalRare: 2,
-		rollAmount:10,
-		wishesDesired: 1
+		rollAmount: 10,
+		wishesDesired: 1,
+		sm: 0,
+		val: 0
 	},
 	computed: {
 		Val: function () {
 			return 100 * (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 		},
 		Prob: function () {
-			var sm = 0;
-			var val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
+			this.sm = 0;
+			this.val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
-				sm += (f[this.rollAmount])/(f[this.rollAmount-x]*f[x])*(Math.pow((val, x))*(Math.pow(val, (this.rollAmount-x)))
+				this.sm += (f[this.rollAmount])/(f[this.rollAmount-x]*f[x])*(Math.pow((this.val, x))*(Math.pow(this.val, (this.rollAmount-x)))
 			}
-			return sm
+			return this.sm
 		}
 	},
 	mounted: function () {
