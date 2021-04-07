@@ -133,13 +133,12 @@
                <div id="code-text" class="collapse" aria-labelledby="code-header">
                   <div class="card-body" id="code-shit" ref="codeShit">
                      This is a simple JavaScript code snippet that just implements the formula shown above.
-                     <pre><code class="lang-js">function WishSpawnRate(WLS, WB, FWB, CC, DC, CL, TC, PR, WP) {
-  return ((WLS * (1 + WB/100)+FWB/100)/(CC-DC+((1-(CL)/(TC))**PR)*TC)+(1/WP));
+                     <pre><code class="lang-js">function WishSpawnRate(WL, WBB, WBF, CD, CL, CT, PR, WP) {
+  return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP);
 }</code></pre>
                      This is a simple Python code snippet that just implements the formula shown above.
-                     <pre><code class="lang-py">def WishSpawnRate(WLS, WB, FWB, CC, DC, CL, TC, PR, WP):
-  return (WLS * (1 + WB/100)+FWB/100)/(CC-DC+((1-(CL)/(TC))**PR)*TC)+(1/WP)
-</code></pre>
+                     <pre><code class="lang-js">def WishSpawnRate(WL, WBB, WBF, CD, CL, CT, PR, WP):
+  return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP)</code></pre>
                   </div>
                </div>
             </div>
